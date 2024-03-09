@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { backend_url } from '../../constants/constants';
 
 function RegisterPage() {
   const [name, setName] = useState('');
@@ -8,9 +9,38 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    // Handle form submission here
+    
+    // Prepare the data to be sent
+    const data = {
+        name: name,
+        surname: surname,
+        email: email,
+        password: password,
+        profilePictureUrl: profilePicture
+    };
+    
+    try {
+        // Send a POST request to the /students/register endpoint
+        const response = await fetch(backend_url + '/register/student', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+        });
+    
+        // Check if the request was successful
+        if (response.ok) {
+            console.log('Student registered successfully');
+        } else {
+            console.error('Failed to register student');
+        }
+    } catch (error) {
+        console.error('An error occurred:', error);
+    };
+
     console.log(`Name: ${name}, Surname: ${surname}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}, Profile Picture: ${profilePicture}`);
   };
 
