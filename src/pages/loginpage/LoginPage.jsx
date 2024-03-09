@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { backend_url } from '../../constants/constants';
@@ -35,7 +34,7 @@ function LoginPage() {
         }
       } catch (error) {
         console.error('An error occurred:', error);
-      };
+      }
 
     console.log(`Email: ${email}, Password: ${password}`);
   };
