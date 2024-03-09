@@ -13,7 +13,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #EDE6F1;
+  background-color: #ede6f1;
   overflow-x: hidden;
 }
 
@@ -21,5 +21,3 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-

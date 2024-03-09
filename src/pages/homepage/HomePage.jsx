@@ -105,7 +105,11 @@ function HomePage() {
 
           <div>
             <h4>Najpopularniji instruktori:</h4>
-            <ProfessorsComponent professors={professors} showSubject={true}/>
+            <ProfessorsComponent
+              professors={professors}
+              showSubject={true}
+              showInstructionsCount={false}
+            />
           </div>
         </div>
       </div>

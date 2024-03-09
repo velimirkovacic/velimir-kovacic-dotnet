@@ -7,7 +7,9 @@ function HomePage() {
     <>
       <div className="navbar-container">
         <div className="flex-row navbar-wrapper">
-          <div><img src="logo/dotInstrukcije-logo.png"/></div>
+          <div>
+            <img src="logo/dotInstrukcije-logo.png" />
+          </div>
 
           <div className="flex-row navbar-options">
             <h4>Pretraži</h4>

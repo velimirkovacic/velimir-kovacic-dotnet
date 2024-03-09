@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/homepage/HomePage';
-import Navbar from './components/navbar/Navbar.jsx'
-import LoginPage from './pages/loginpage/LoginPage.jsx'
-import RegisterPage from './pages/registerpage/RegisterPage.jsx'
-import SubjectPage from './pages/subject/SubjectPage.jsx'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/homepage/HomePage";
+import Navbar from "./components/navbar/Navbar.jsx";
+import LoginPage from "./pages/loginpage/LoginPage.jsx";
+import RegisterPage from "./pages/registerpage/RegisterPage.jsx";
+import SubjectPage from "./pages/subject/SubjectPage.jsx";
 
 function App() {
   return (

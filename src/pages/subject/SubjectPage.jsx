@@ -7,28 +7,28 @@ let professors = [
     url: "ivan-horvat",
     subjectTitle: "Diskretna Matematika",
     image: "/placeholder.png",
-    instructionsCount : "5",
+    instructionsCount: "5",
   },
   {
     name: "Petar Ivanić",
     url: "petar-ivanić",
     subjectTitle: "Baze podataka",
     image: "/placeholder.png",
-    instructionsCount : "3",
+    instructionsCount: "3",
   },
   {
     name: "Maja Petrić",
     url: "maja-petrić",
     subjectTitle: "Baze podataka",
     image: "/placeholder.png",
-    instructionsCount : "3",
+    instructionsCount: "3",
   },
   {
     name: "Ivona Nađ",
     url: "ivona-nađ",
     subjectTitle: "Osnove elektotehnike",
     image: "/placeholder.png",
-    instructionsCount : "1",
+    instructionsCount: "1",
   },
 ];
 
@@ -60,7 +60,11 @@ function SubjectPage() {
 
           <div>
             <h4>Najpopularniji instruktori:</h4>
-            <ProfessorsComponent professors={professors} showSubject={false}/>
+            <ProfessorsComponent
+              professors={professors}
+              showSubject={false}
+              showInstructionsCount={true}
+            />
           </div>
         </div>
       </div>

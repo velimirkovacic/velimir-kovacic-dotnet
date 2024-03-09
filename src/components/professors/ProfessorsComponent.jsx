@@ -2,7 +2,11 @@
 import { Button } from "@mui/material";
 import "./ProfessorsComponent.css";
 
-function ProfessorsComponent({ professors, showSubject }) {
+function ProfessorsComponent({
+  professors,
+  showSubject,
+  showInstructionsCount,
+}) {
   return (
     <>
       <div className="professor-container">
@@ -17,10 +21,12 @@ function ProfessorsComponent({ professors, showSubject }) {
             {showSubject && (
               <p className="professor-text">{professor.subjectTitle}</p>
             )}
-            <div className="instructionsCount-container">
-              <img src="/icons/users-icon.svg" className="users-icon" />
-              <p>{professor.instructionsCount}</p>
-            </div>
+            {showInstructionsCount && (
+              <div className="instructionsCount-container">
+                <img src="/icons/users-icon.svg" className="users-icon" />
+                <p>{professor.instructionsCount}</p>
+              </div>
+            )}
             <Button variant="contained">Dogovori termin</Button>
           </div>
         ))}

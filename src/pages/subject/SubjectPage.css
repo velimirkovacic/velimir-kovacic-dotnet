@@ -1,20 +1,18 @@
-.subjectPage-title{
-
+.subjectPage-title {
 }
 
-.subjectPage-text{
-    
+.subjectPage-text {
 }
 
-.subjectPage-wrapper{
-    width: 100vw;
-    height: 98vh;
-    display: flex;
-    justify-content: center;
+.subjectPage-wrapper {
+  width: 100vw;
+  height: 98vh;
+  display: flex;
+  justify-content: center;
 }
 
-.subjectPage-container{
-    width: 90%;
-    gap: 10px;
-    margin: 2rem 0;
+.subjectPage-container {
+  width: 90%;
+  gap: 10px;
+  margin: 2rem 0;
 }
