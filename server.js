@@ -2,7 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
 
+let secret = "aksdlf#%3289asldfj"
 
 // Replace 'your_connection_string' with your actual MongoDB connection string
 const mongoConnectionString =
@@ -81,7 +83,11 @@ app.post("/login/student", async (req, res) => {
     if (!student) {
       return res.status(401).send({ sucess: false, message: "Login failed" });
     }
-    res.status(200).send({ sucess: true, message: "Login successful" });
+
+    // Generate a token
+    const token = jwt.sign({ _id: student._id }, secret, { expiresIn: "1h" });
+
+    res.status(200).send({ sucess: true, message: "Login successful", token: token, student: student});
   } catch (error) {
     res.status(400).send(error);
   }
@@ -101,6 +107,33 @@ app.post("/login/teacher", async (req, res) => {
   } catch (error) {
     res.status(400).send(error);
   }
+});
+
+// A middleware function to authenticate requests
+const authenticate = async (req, res, next) => {
+  const authHeader = req.header('Authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).send({ error: 'Not authorized to access this resource' });
+  }
+
+  const token = authHeader.replace('Bearer ', '');
+  try {
+    const data = jwt.verify(token, secret);
+    const student = await Student.findOne({ _id: data._id });
+    if (!student) {
+      throw new Error();
+    }
+    req.student = student;
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({ error: 'Not authorized to access this resource' });
+  }
+};
+
+// A protected route
+app.get('/protected', authenticate, (req, res) => {
+  res.status(200).send({ success: true, message: "You are authorized to access this resource" });
 });
 
 app.listen(3001, () => {
