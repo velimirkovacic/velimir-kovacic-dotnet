@@ -34,6 +34,7 @@ function RegisterPage() {
       // Check if the request was successful
       if (response.ok) {
         console.log("Student registered successfully");
+        window.location.href = "/login";
       } else {
         console.error("Failed to register student");
       }
