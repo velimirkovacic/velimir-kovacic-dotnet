@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Button } from "@mui/material";
+import ProfessorsComponent from "../../components/professors/ProfessorsComponent";
 
 let subjects = [
   {
@@ -104,16 +105,11 @@ function HomePage() {
 
           <div>
             <h4>Najpopularniji instruktori:</h4>
-            <div className="professor-container">
-              {professors.map((professor) => (
-                <div key={professor.url} className="professor">
-                  <img src={professor.image} className="professor-image" />
-                  <h3 className="professor-text">{professor.name}</h3>
-                  <p className="professor-text">{professor.subjectTitle}</p>
-                  <Button variant="contained">Dogovori termin</Button>
-                </div>
-              ))}
-            </div>
+            <ProfessorsComponent
+              professors={professors}
+              showSubject={true}
+              showInstructionsCount={false}
+            />
           </div>
         </div>
       </div>
