@@ -6,6 +6,9 @@ function ProfessorsComponent({
   professors,
   showSubject,
   showInstructionsCount,
+  showTime,
+  buttonText,
+  buttonVariant,
 }) {
   return (
     <>
@@ -17,17 +20,28 @@ function ProfessorsComponent({
               className="professor-image"
               alt={professor.name}
             />
-            <h3 className="professor-text">{professor.name}</h3>
-            {showSubject && (
-              <p className="professor-text">{professor.subjectTitle}</p>
-            )}
-            {showInstructionsCount && (
-              <div className="instructionsCount-container">
-                <img src="/icons/users-icon.svg" className="users-icon" />
-                <p>{professor.instructionsCount}</p>
-              </div>
-            )}
-            <Button variant="contained">Dogovori termin</Button>
+            <div className="professor-info">
+              <h3 className="professor-text">{professor.name}</h3>
+              {showSubject && (
+                <p className="professor-text">{professor.subjectTitle}</p>
+              )}
+              {showInstructionsCount && (
+                <div className="instructionsCount-container">
+                  <img src="/icons/users-icon.svg" className="users-icon" />
+                  <p>{professor.instructionsCount}</p>
+                </div>
+              )}
+
+              {showTime && (
+                <div className="instructionsCount-container">
+                  <img src="/icons/users-icon.svg" className="users-icon" />
+                  <p>{professor.time}</p>
+                </div>
+              )}
+              <Button variant={buttonVariant ? buttonVariant : "contained"}>
+                {buttonText ? buttonText : "Dogovori termin"}
+              </Button>
+            </div>
           </div>
         ))}
       </div>

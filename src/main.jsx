@@ -20,6 +20,20 @@ const theme = createTheme({
           borderRadius: "32px",
           boxShadow: "none",
         },
+        outlined: {
+          fontFamily: "Inter",
+          color: "#A26AD2",
+          border: "1px solid #A26AD2",
+          textTransform: "none",
+          "&:hover": {
+            backgroundColor: "#ebe0f7",
+            boxShadow: "none",
+            color: "#8a43c6",
+            border: "1px solid #8a43c6",
+          },
+          borderRadius: "32px",
+          boxShadow: "none",
+        },
       },
     },
     MuiOutlinedInput: {
@@ -52,5 +66,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ThemeProvider theme={theme}>
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
