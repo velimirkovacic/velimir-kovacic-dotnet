@@ -18,33 +18,38 @@ function ProfilePage() {
     {
       name: "Petar Ivanić",
       url: "petar-ivanić",
+      subjectTitle: "Diskretna matematika 1",
       time: "20.4.2024. 16:30",
       image: "/placeholder.png",
     },
     {
       name: "Maja Petrić",
       url: "maja-petrić",
+      subjectTitle: "Fizika 1",
       time: "20.4.2024. 16:30",
       image: "/placeholder.png",
     },
     {
-        name: "Maja Petrić",
-        url: "maja-petrić",
-        time: "20.4.2024. 16:30",
-        image: "/placeholder.png",
-      },
+      name: "Maja Petrić",
+      url: "maja-petrić",
+      subjectTitle: "Fizika 1",
+      time: "20.4.2024. 16:30",
+      image: "/placeholder.png",
+    },
   ];
 
   student.upcomingInstructions = [
     {
       name: "Petar Ivanić",
       url: "petar-ivanić",
+      subjectTitle: "Diskretna matematika 1",
       time: "20.4.2024. 16:30",
       image: "/placeholder.png",
     },
     {
       name: "Maja Petrić",
       url: "maja-petrić",
+      subjectTitle: "Fizika 1",
       time: "20.4.2024. 16:30",
       image: "/placeholder.png",
     },
@@ -54,12 +59,14 @@ function ProfilePage() {
     {
       name: "Petar Ivanić",
       url: "petar-ivanić",
+      subjectTitle: "Diskretna matematika 1",
       time: "20.4.2024. 16:30",
       image: "/placeholder.png",
     },
     {
       name: "Maja Petrić",
       url: "maja-petrić",
+      subjectTitle: "Fizika 1",
       time: "20.4.2024. 16:30",
       image: "/placeholder.png",
     },
@@ -81,6 +88,7 @@ function ProfilePage() {
             <ProfessorsComponent
               professors={student.sentInstructionRequests}
               showTime={true}
+              showSubject={true}
               buttonText={"Promjeni"}
               buttonVariant={"outlined"}
             />
@@ -91,6 +99,7 @@ function ProfilePage() {
             <ProfessorsComponent
               professors={student.upcomingInstructions}
               showTime={true}
+              showSubject={true}
               buttonText={"Promjeni"}
               buttonVariant={"outlined"}
             />
@@ -101,6 +110,7 @@ function ProfilePage() {
             <ProfessorsComponent
               professors={student.pageInstructions}
               showTime={true}
+              showSubject={true}
               buttonText={"Ponovno dogovori"}
             />
           </div>

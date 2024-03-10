@@ -62,7 +62,6 @@ function SubjectPage() {
             <h4>Najpopularniji instruktori:</h4>
             <ProfessorsComponent
               professors={professors}
-              showSubject={false}
               showInstructionsCount={true}
             />
           </div>
