@@ -1,121 +1,195 @@
 import React, { useState } from "react";
-import { backend_url } from "../../constants/constants";
+import { Button } from "@mui/material";
+import { handlerRegister } from "../../api/AuthApi";
 
 function RegisterPage() {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [showStudentForm, setShowStudentForm] = useState(true);
 
-  const handleSubmit = async (event) => {
+  const [studentName, setStudentName] = useState("");
+  const [studentSurname, setStudentSurname] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
+  const [studentPassword, setStudentPassword] = useState("");
+  const [studentConfirmPassword, setStudentConfirmPassword] = useState("");
+  const [studentProfilePicture, setStudentProfilePicture] = useState(null);
+
+  const [professorName, setProfessorName] = useState("");
+  const [professorSurname, setProfessorSurname] = useState("");
+  const [professorEmail, setProfessorEmail] = useState("");
+  const [professorPassword, setProfessorPassword] = useState("");
+  const [professorConfirmPassword, setProfessorConfirmPassword] = useState("");
+  const [professorProfilePicture, setProfessorProfilePicture] = useState(null);
+
+  const handleStudentSubmit = async (event) => {
     event.preventDefault();
 
     // Prepare the data to be sent
-    const data = {
-      name: name,
-      surname: surname,
-      email: email,
-      password: password,
-      profilePictureUrl: profilePicture,
+    const studentData = {
+      name: studentName,
+      surname: studentSurname,
+      email: studentEmail,
+      password: studentPassword,
+      profilePictureUrl: studentProfilePicture,
     };
 
-    try {
-      // Send a POST request to the /students/register endpoint
-      const response = await fetch(backend_url + "/register/student", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    // Send the data to the server
+    handlerRegister(studentData, "student");
+  };
 
-      // Check if the request was successful
-      if (response.ok) {
-        console.log("Student registered successfully");
-        window.location.href = "/login";
-      } else {
-        console.error("Failed to register student");
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
+  const handleProfessorSubmit = async (event) => {
+    event.preventDefault();
 
-    console.log(
-      `Name: ${name}, Surname: ${surname}, Email: ${email}, Password: ${password}, Confirm Password: ${confirmPassword}, Profile Picture: ${profilePicture}`,
-    );
+    const professorData = {
+      name: professorName,
+      surname: professorSurname,
+      email: professorEmail,
+      password: professorPassword,
+      profilePictureUrl: professorProfilePicture,
+    };
+
+    handlerRegister(professorData, "professor");
   };
 
   const handleImageChange = (event) => {
-    setProfilePicture(URL.createObjectURL(event.target.files[0]));
+    console.log("changed");
   };
 
   return (
-    <div>
-      <h1>Registracija studenta</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Ime</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+    <>
+    <Button variant="contained" onClick={() => setShowStudentForm(!showStudentForm)}>
+      Registriraj se kao {showStudentForm ? 'professor' : 'student'}?
+    </Button>
+    {showStudentForm ? (
+      <div>
+        <h1>Registracija studenta</h1>
+        <form onSubmit={handleStudentSubmit}>
+          <div>
+            <label htmlFor="name">Ime</label>
+            <input
+              type="text"
+              id="name"
+              value={studentName}
+              onChange={(e) => setStudentName(e.target.value)}
+            />
 
-          <label htmlFor="surname">Prezime</label>
-          <input
-            type="text"
-            id="surname"
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
-          />
+            <label htmlFor="surname">Prezime</label>
+            <input
+              type="text"
+              id="surname"
+              value={studentSurname}
+              onChange={(e) => setStudentSurname(e.target.value)}
+            />
 
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={studentEmail}
+              onChange={(e) => setStudentEmail(e.target.value)}
+            />
 
-          <label htmlFor="password">Lozinka</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <label htmlFor="password">Lozinka</label>
+            <input
+              type="password"
+              id="password"
+              value={studentPassword}
+              onChange={(e) => setStudentPassword(e.target.value)}
+            />
 
-          <label htmlFor="confirmPassword">Potvrdi Lozinku</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+            <label htmlFor="confirmPassword">Potvrdi Lozinku</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={studentConfirmPassword}
+              onChange={(e) => setStudentConfirmPassword(e.target.value)}
+            />
 
-          <label htmlFor="profilePicture">Profilna fotografija</label>
-          <input type="file" id="profilePicture" onChange={handleImageChange} />
-        </div>
-        <button type="submit">Register</button>
-        <button
-          type="button"
-          onClick={() => {
-            setName("");
-            setSurname("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            setProfilePicture(null);
-          }}
+            <label htmlFor="profilePicture">Profilna fotografija</label>
+            <input type="file" id="profilePicture" onChange={handleImageChange} />
+          </div>
+          <button type="submit">Register</button>
+          <button
+            type="button"
+            onClick={() => {
+              setStudentName("");
+              setStudentSurname("");
+              setStudentEmail("");
+              setStudentPassword("");
+              setStudentConfirmPassword("");
+              setStudentProfilePicture(null);
+            }}
+          >
+            Odbaci
+          </button>
+        </form>
+      </div>
+      ) : (
+      <div>
+        <h1>Registracija profesora</h1>
+        <form onSubmit={handleProfessorSubmit}>
+          <div>
+            <label htmlFor="name">Ime</label>
+            <input
+              type="text"
+              id="name"
+              value={professorName}
+              onChange={(e) => setProfessorName(e.target.value)}
+            />
+
+            <label htmlFor="surname">Prezime</label>
+            <input
+              type="text"
+              id="surname"
+              value={professorSurname}
+              onChange={(e) => setProfessorSurname(e.target.value)}
+            />
+
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={professorEmail}
+              onChange={(e) => setProfessorEmail(e.target.value)}
+            />
+
+            <label htmlFor="password">Lozinka</label>
+            <input
+              type="password"
+              id="password"
+              value={professorPassword}
+              onChange={(e) => setProfessorPassword(e.target.value)}
+            />
+
+            <label htmlFor="confirmPassword">Potvrdi Lozinku</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={professorConfirmPassword}
+              onChange={(e) => setProfessorConfirmPassword(e.target.value)}
+            />
+
+            <label htmlFor="profilePicture">Profilna fotografija</label>
+            <input type="file" id="profilePicture" onChange={handleImageChange} />
+          </div>
+          <button type="submit">Register</button>
+          <button
+            type="button"
+            onClick={() => {
+              setProfessorName("");
+              setProfessorSurname("");
+              setProfessorEmail("");
+              setProfessorPassword("");
+              setProfessorConfirmPassword("");
+              setProfessorProfilePicture(null);
+            }
+          }
         >
-          Odbaci
+        Odbaci
         </button>
       </form>
-    </div>
-  );
-}
+      </div>
+      )}
+    </>
+    );
+  }
 
-export default RegisterPage;
+  export default RegisterPage;

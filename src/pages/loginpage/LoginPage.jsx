@@ -1,40 +1,75 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { handleLogin } from "../../api/AuthApi";
 import React, { useState } from 'react';
-
+import { handleLogin } from '../../api/AuthApi';
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [showStudentLogIn, setShowStudentLogIn] = useState(true);
 
-  function handleSubmit(event) {
+  const [studentEmail, setStudentEmail] = useState('');
+  const [studentPassword, setStudentPassword] = useState('');
+
+  const [professorEmail, setProfessorEmail] = useState('');
+  const [professorPassword, setProfessorPassword] = useState('');
+
+  function handleStudentSubmit(event) {
     event.preventDefault();
     const data = {
-        email: email,
-        password: password
+        email: studentEmail,
+        password: studentPassword
       };
-    handleLogin(data);
+    handleLogin(data, "student");
+  }
+
+  function handleProfessorSubmit(event) {
+    event.preventDefault();
+    const data = {
+        email: professorEmail,
+        password: professorPassword
+      };
+    handleLogin(data, "professor");
   }
 
   return (
-    <div>
-      <h1>Prijava studenta</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">E-mail adresa</label>
-          <input type="text" id="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-
-          <label htmlFor="password">Lozinka</label>
-          <input type="password" id="password" placeholder="Lozinka" value={password} onChange={e => setPassword(e.target.value)} />
-        </div>
-        <button type="submit">Prijavi se</button>
-        <button type="button" onClick={() => {setEmail(''); setPassword('');}}>Odbaci</button>
-      </form>
+      <>
+        <Button variant="contained" onClick={() => setShowStudentLogIn(!showStudentLogIn)}>
+          Prijavi se kao {showStudentLogIn ? 'professor' : 'student'}?
+        </Button>
         <Link to="/register">
-            <Button variant="contained">Registriraj se</Button>
+          <Button variant="contained">Registriraj se</Button>
         </Link>
-    </div>
+      {showStudentLogIn ? (
+          <div>
+            <h1>Prijava studenta</h1>
+            <form onSubmit={handleStudentSubmit}>
+              <div>
+                <label htmlFor="email">E-mail adresa</label>
+                <input type="text" id="email" placeholder="Email" value={studentEmail} onChange={e => setStudentEmail(e.target.value)} />
+      
+                <label htmlFor="password">Lozinka</label>
+                <input type="password" id="password" placeholder="Lozinka" value={studentPassword} onChange={e => setStudentPassword(e.target.value)} />
+              </div>
+              <button type="submit">Prijavi se</button>
+              <button type="button" onClick={() => {setStudentEmail(''); setStudentPassword('');}}>Odbaci</button>
+            </form>
+          </div>) : (
+              <div>
+                <h1>Prijava profesora</h1>
+                <form onSubmit={handleProfessorSubmit}>
+                  <div>
+                    <label htmlFor="email">E-mail adresa</label>
+                    <input type="text" id="email" placeholder="Email" value={professorEmail} onChange={e => setProfessorEmail(e.target.value)} />
+
+                    <label htmlFor="password">Lozinka</label>
+                    <input type="password" id="password" placeholder="Lozinka" value={professorPassword} onChange={e => setProfessorPassword(e.target.value)} />
+                  </div>
+                  <button type="submit">Prijavi se</button>
+                  <button type="button" onClick={() => {setProfessorEmail(''); setProfessorPassword('');}}>Odbaci</button>
+                </form>
+              </div>
+          )
+      }
+    </>
   );
 }
 

@@ -13,23 +13,25 @@ function HomePage() {
       <div className="navbar-container">
         <div className="flex-row navbar-wrapper">
           <div>
-            <img src="logo/dotInstrukcije-logo.png" />
+            <Link to="/">
+              <img src="logo/dotInstrukcije-logo.png" />
+            </Link>
           </div>
 
           <div className="flex-row navbar-options">
             {loggedIn ? (
               <>
-              <h4>Pretraži</h4>
-              <h4>Poruke</h4>
-              <Link to="/profile">
-                <Button variant="contained">Profil</Button>
-              </Link>
-              <h4>Moji predmeti</h4>
-              <Button variant="contained" onClick={logout}>Odjavi se</Button></>
+              <Link to="/"><Button variant="contained">Pretraži</Button></Link>
+              <Link to="#"><Button variant="contained">Poruke</Button></Link>
+              <Link to="/profile"><Button variant="contained">Profil</Button></Link>
+              <Button variant="contained" onClick={logout}>Odjavi se</Button>
+              </>
             ) : (
-              <Link to="/login">
-                <Button variant="contained">Log in</Button>
-              </Link>
+              <>
+                <Link to="/login">
+                  <Button variant="contained">Prijavi se</Button>
+                </Link>
+              </>
             )}
           </div>
         </div>
