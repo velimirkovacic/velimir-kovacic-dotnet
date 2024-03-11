@@ -17,9 +17,6 @@ function HomePage() {
           </div>
 
           <div className="flex-row navbar-options">
-            <Link to="/protected">
-              <Button variant="contained">Protected</Button>
-            </Link>
             {loggedIn ? (
               <>
               <h4>Pretraži</h4>

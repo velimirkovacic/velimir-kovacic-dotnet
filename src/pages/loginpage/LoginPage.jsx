@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { handleLogin } from '../../api/LoginApi';
+import { handleLogin } from "../../api/AuthApi";
 import React, { useState } from 'react';
 
 

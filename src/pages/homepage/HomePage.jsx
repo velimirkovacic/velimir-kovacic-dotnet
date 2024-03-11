@@ -1,67 +1,40 @@
 import "./HomePage.css";
 
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Button } from "@mui/material";
 import ProfessorsComponent from "../../components/professors/ProfessorsComponent";
-
-let subjects = [
-  {
-    title: "Diskretna matematika 1",
-    url: "dismat",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Eu fermentum posuere porttitor dui erat amet.",
-  },
-  {
-    title: "Osnove elektotehnike",
-    url: "osnele",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Eu fermentum posuere porttitor dui erat amet.",
-  },
-  {
-    title: "Fizika 1",
-    url: "fiz1",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Eu fermentum posuere porttitor dui erat amet.",
-  },
-  {
-    title: "Baze podataka",
-    url: "bazpod",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Eu fermentum posuere porttitor dui erat amet.",
-  },
-];
-
-let professors = [
-  {
-    name: "Ivan Horvat",
-    url: "ivan-horvat",
-    subjectTitle: "Diskretna Matematika",
-    image: "/placeholder.png",
-  },
-  {
-    name: "Petar Ivanić",
-    url: "petar-ivanić",
-    subjectTitle: "Baze podataka",
-    image: "/placeholder.png",
-  },
-  {
-    name: "Maja Petrić",
-    url: "maja-petrić",
-    subjectTitle: "Baze podataka",
-    image: "/placeholder.png",
-  },
-  {
-    name: "Ivona Nađ",
-    url: "ivona-nađ",
-    subjectTitle: "Osnove elektotehnike",
-    image: "/placeholder.png",
-  },
-];
+import { getSubjects } from '../../api/SubjectApi';
+import { getProfessors } from '../../api/ProfessorApi';
 
 function HomePage() {
+  const [subjects, setSubjects] = useState([]);
+  const [professors, setProfessors] = useState([]);
+
+  useEffect(() => {
+      const fetchSubjects = async () => {
+        const fetchedSubjects = await getSubjects();
+        setSubjects(fetchedSubjects.subjects);
+      };
+
+      const fetchProfessors = async () => {
+        const fetchedProfessors = await getProfessors();
+        setProfessors(fetchedProfessors.professors);
+      };
+
+    fetchSubjects();
+    fetchProfessors();
+  }, []);
+
+    
+
+  if (!localStorage.getItem('token')) {
+    window.location.href = '/login';
+  }
+
   return (
     <>
       <div className="homepage-wrapper">
