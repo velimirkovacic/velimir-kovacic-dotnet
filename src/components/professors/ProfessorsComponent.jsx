@@ -14,7 +14,7 @@ function ProfessorsComponent({
     <>
       <div className="professor-container">
         {professors.map((professor) => (
-          <div key={professor.url} className="professor">
+          <div key={professor._id} className="professor">
             <img
               src={professor.image}
               className="professor-image"

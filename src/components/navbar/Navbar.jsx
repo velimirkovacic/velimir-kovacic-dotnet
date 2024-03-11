@@ -14,7 +14,7 @@ function HomePage() {
         <div className="flex-row navbar-wrapper">
           <div>
             <Link to="/">
-              <img src="logo/dotInstrukcije-logo.png" />
+              <img src="/logo/dotInstrukcije-logo.png" />
             </Link>
           </div>
 

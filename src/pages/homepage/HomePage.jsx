@@ -10,26 +10,79 @@ import ProfessorsComponent from "../../components/professors/ProfessorsComponent
 import { getSubjects } from '../../api/SubjectApi';
 import { getProfessors } from '../../api/ProfessorApi';
 
-function HomePage() {
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+
+function ComboBox() {
   const [subjects, setSubjects] = useState([]);
+
+  useEffect(() => {
+    getSubjects().then(response => setSubjects(response.subjects));
+  }, []);
+
+  const handleSubjectSelect = (event, value) => {
+    if (value) {
+      window.location.href = `/subject/${value.url}`;
+    }
+  };
+
+  return (
+    <>
+    <div className="search-container">
+    <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={subjects}
+      getOptionLabel={(option) => option.title}
+      onChange={handleSubjectSelect}
+      renderInput={(params) =>
+        <TextField {...params} 
+        InputProps={{
+          ...params.InputProps,
+          startAdornment: (
+            <InputAdornment position="start">
+              <img
+                src="/icons/search-icon.svg"
+                style={{ height: "20px", width: "20px" }}
+              />
+            </InputAdornment>
+          ),
+        }}
+        />
+      }
+    />
+    {/* <Button variant="contained" onClick={handleButtonClick}>Pretraži</Button> */}
+    </div>
+    <div>
+      {subjects.map((subject) => (
+        <Link
+          to={`/subject/${subject.url}`}
+          key={subject.url}
+          className="link-no-style"
+        >
+          <div className="predmet">
+            <h2 className="predmet-text">{subject.title}</h2>
+            <p className="predmet-text">{subject.description}</p>
+          </div>
+        </Link>
+      ))}
+    </div>
+    </>
+  );
+}
+
+function HomePage() {
   const [professors, setProfessors] = useState([]);
 
   useEffect(() => {
-      const fetchSubjects = async () => {
-        const fetchedSubjects = await getSubjects();
-        setSubjects(fetchedSubjects.subjects);
-      };
-
       const fetchProfessors = async () => {
         const fetchedProfessors = await getProfessors();
         setProfessors(fetchedProfessors.professors);
       };
 
-    fetchSubjects();
     fetchProfessors();
   }, []);
-
-    
 
   if (!localStorage.getItem('token')) {
     window.location.href = '/login';
@@ -45,8 +98,8 @@ function HomePage() {
               <h2>instrukcije po mjeri!</h2>
             </div>
 
-            <div className="search-container">
-              <OutlinedInput
+            {/* <div className="search-container"> */}
+              {/* <OutlinedInput
                 startAdornment={
                   <InputAdornment position="start">
                     <img
@@ -55,12 +108,11 @@ function HomePage() {
                     />
                   </InputAdornment>
                 }
-              />
+              /> */}
+              <ComboBox />
+            {/* </div> */}
 
-              <Button variant="contained">Pretraži</Button>
-            </div>
-
-            <div>
+            {/* <div>
               {subjects.map((subject) => (
                 <Link
                   to={`/subject/${subject.url}`}
@@ -73,7 +125,7 @@ function HomePage() {
                   </div>
                 </Link>
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div>
