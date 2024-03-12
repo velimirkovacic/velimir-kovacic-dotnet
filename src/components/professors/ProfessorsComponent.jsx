@@ -16,12 +16,12 @@ function ProfessorsComponent({
         {professors.map((professor) => (
           <div key={professor._id} className="professor">
             <img
-              src={professor.image}
+              src={professor.profilePictureUrl ? professor.profilePictureUrl: "/placeholder.png"}
               className="professor-image"
               alt={professor.name}
             />
             <div className="professor-info">
-              <h3 className="professor-text">{professor.name}</h3>
+              <h3 className="professor-text">{professor.name} {professor.surname}</h3>
               {showSubject && (
                 <p className="professor-text">{professor.subjectTitle}</p>
               )}

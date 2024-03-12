@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import multer from "multer";
+
+const upload = multer({ dest: 'uploads/' });
 
 // Replace 'your_connection_string' with your actual MongoDB connection string
 const mongoConnectionString =
@@ -50,6 +53,7 @@ const Subject = mongoose.model('Subject', subjectSchema);
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // for parsing application/json
 
 app.get("/", (req, res) => {
@@ -57,7 +61,7 @@ app.get("/", (req, res) => {
 });
 
 // Student Registration
-app.post("/register/student", async (req, res) => {
+app.post("/register/student", upload.single('profilePicture'), async (req, res) => {
   try {
     // Check if student with the same email already exists
     const existingStudent = await Student.findOne({ email: req.body.email });
@@ -76,7 +80,7 @@ app.post("/register/student", async (req, res) => {
 });
 
 // Teacher Registration
-app.post("/register/professor", async (req, res) => {
+app.post("/register/professor", upload.single('profilePicture'), async (req, res) => {
   try {
     // Check if teacher with the same email already exists
     const existingTeacher = await Teacher.findOne({ email: req.body.email });
@@ -109,7 +113,7 @@ app.post("/login/student", async (req, res) => {
 
     const payload = { email: student.email };
     const token = jwt.sign(payload, secretKey);
-    return res.status(200).send({ success: true, token, message: "Login successful" });
+    return res.status(200).send({ success: true, token, message: "Login successful", student: student});
   } catch (error) {
     console.log(error)
     return res.status(400).send(error);
@@ -129,7 +133,7 @@ app.post("/login/professor", async (req, res) => {
 
     const payload = { email: teacher.email };
     const token = jwt.sign(payload, secretKey);
-    return res.status(200).send({ success: true, token, message: "Login successful" });
+    return res.status(200).send({ success: true, token, message: "Login successful", professor: teacher });
   } catch (error) {
     console.log(error)
     return res.status(400).send(error);

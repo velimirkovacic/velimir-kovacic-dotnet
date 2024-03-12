@@ -23,13 +23,15 @@ function RegisterPage() {
     event.preventDefault();
 
     // Prepare the data to be sent
-    const studentData = {
-      name: studentName,
-      surname: studentSurname,
-      email: studentEmail,
-      password: studentPassword,
-      profilePictureUrl: studentProfilePicture,
-    };
+    const studentData = new FormData();
+    studentData.append('name', studentName);
+    studentData.append('surname', studentSurname);
+    studentData.append('email', studentEmail);
+    studentData.append('password', studentPassword);
+    studentData.append('confirmPassword', studentConfirmPassword);
+    studentData.append('profilePicture', studentProfilePicture);
+
+    console.log(studentData);
 
     // Send the data to the server
     handlerRegister(studentData, "student");
@@ -38,19 +40,25 @@ function RegisterPage() {
   const handleProfessorSubmit = async (event) => {
     event.preventDefault();
 
-    const professorData = {
-      name: professorName,
-      surname: professorSurname,
-      email: professorEmail,
-      password: professorPassword,
-      profilePictureUrl: professorProfilePicture,
-    };
+    const professorData = new FormData();
+    professorData.append('name', professorName);
+    professorData.append('surname', professorSurname);
+    professorData.append('email', professorEmail);
+    professorData.append('password', professorPassword);
+    professorData.append('confirmPassword', professorConfirmPassword);
+    professorData.append('profilePicture', professorProfilePicture);
+
+    console.log(professorData);
 
     handlerRegister(professorData, "professor");
   };
 
-  const handleImageChange = (event) => {
-    console.log("changed");
+  const handleStudentImageChange = (event) => {
+    setStudentProfilePicture(event.target.files[0]);
+  };
+
+  const handleProfessorImageChange = (event) => {
+    setProfessorProfilePicture(event.target.files[0]);
   };
 
   return (
@@ -104,7 +112,7 @@ function RegisterPage() {
             />
 
             <label htmlFor="profilePicture">Profilna fotografija</label>
-            <input type="file" id="profilePicture" onChange={handleImageChange} />
+            <input type="file" id="profilePicture" onChange={handleStudentImageChange} />
           </div>
           <button type="submit">Register</button>
           <button
@@ -168,7 +176,7 @@ function RegisterPage() {
             />
 
             <label htmlFor="profilePicture">Profilna fotografija</label>
-            <input type="file" id="profilePicture" onChange={handleImageChange} />
+            <input type="file" id="profilePicture" onChange={handleProfessorImageChange} />
           </div>
           <button type="submit">Register</button>
           <button
