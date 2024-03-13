@@ -3,17 +3,17 @@ import "./ProfilePage.css";
 
 function ProfilePage() {
   if (!localStorage.getItem("token")) {
-    //window.location.href = '/login';
+    window.location.href = '/login';
   }
-  //let student = JSON.parse(localStorage.getItem('student'));
+  let student = JSON.parse(localStorage.getItem('student'));
 
-  /*for dev purposes, remove later */
+  /*for dev purposes, remove later 
   let student = {};
   student.name = "Petar Klarić";
   student.image = "/placeholder.png";
   student.description =
     "Lorem ipsum dolor sit amet consectetur. Eu fermentum posuere porttitor dui erat amet.";
-
+*/
   student.sentInstructionRequests = [
     {
       name: "Petar Ivanić",
@@ -78,7 +78,7 @@ function ProfilePage() {
           <div className="student-info">
             <img src={student.image} className="student-image" />
             <div>
-              <h1>{student.name}</h1>
+              <h1>{student.name} {student.surname}</h1>
               <p>{student.description}</p>
             </div>
           </div>

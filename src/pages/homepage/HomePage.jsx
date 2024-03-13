@@ -1,11 +1,9 @@
 import "./HomePage.css";
 
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
-import { Button } from "@mui/material";
 import ProfessorsComponent from "../../components/professors/ProfessorsComponent";
 import { getSubjects } from '../../api/SubjectApi';
 import { getProfessors } from '../../api/ProfessorApi';
