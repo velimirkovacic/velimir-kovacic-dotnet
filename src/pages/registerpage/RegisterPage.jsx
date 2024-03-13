@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { useState } from "react";
+import {
+  Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from "@mui/material";
+
+import "./RegisterPage.css";
 import { handlerRegister } from "../../api/AuthApi";
 
 function RegisterPage() {
@@ -24,12 +32,12 @@ function RegisterPage() {
 
     // Prepare the data to be sent
     const studentData = new FormData();
-    studentData.append('name', studentName);
-    studentData.append('surname', studentSurname);
-    studentData.append('email', studentEmail);
-    studentData.append('password', studentPassword);
-    studentData.append('confirmPassword', studentConfirmPassword);
-    studentData.append('profilePicture', studentProfilePicture);
+    studentData.append("name", studentName);
+    studentData.append("surname", studentSurname);
+    studentData.append("email", studentEmail);
+    studentData.append("password", studentPassword);
+    studentData.append("confirmPassword", studentConfirmPassword);
+    studentData.append("profilePicture", studentProfilePicture);
 
     console.log(studentData);
 
@@ -41,12 +49,12 @@ function RegisterPage() {
     event.preventDefault();
 
     const professorData = new FormData();
-    professorData.append('name', professorName);
-    professorData.append('surname', professorSurname);
-    professorData.append('email', professorEmail);
-    professorData.append('password', professorPassword);
-    professorData.append('confirmPassword', professorConfirmPassword);
-    professorData.append('profilePicture', professorProfilePicture);
+    professorData.append("name", professorName);
+    professorData.append("surname", professorSurname);
+    professorData.append("email", professorEmail);
+    professorData.append("password", professorPassword);
+    professorData.append("confirmPassword", professorConfirmPassword);
+    professorData.append("profilePicture", professorProfilePicture);
 
     console.log(professorData);
 
@@ -63,141 +71,261 @@ function RegisterPage() {
 
   return (
     <>
-    <Button variant="contained" onClick={() => setShowStudentForm(!showStudentForm)}>
-      Registriraj se kao {showStudentForm ? 'professor' : 'student'}?
-    </Button>
-    {showStudentForm ? (
-      <div>
-        <h1>Registracija studenta</h1>
-        <form onSubmit={handleStudentSubmit}>
-          <div>
-            <label htmlFor="name">Ime</label>
-            <input
-              type="text"
-              id="name"
-              value={studentName}
-              onChange={(e) => setStudentName(e.target.value)}
-            />
+      {showStudentForm ? (
+        <div className="register-wrapper">
+          <div className="register-container">
+            <h1>Registracija studenta</h1>
+            <form onSubmit={handleStudentSubmit}>
+              <div className="register-form">
+                <InputLabel htmlFor="name">Ime</InputLabel>
+                <OutlinedInput
+                  id="name"
+                  type="text"
+                  value={studentName}
+                  onChange={(e) => setStudentName(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/person-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="surname">Prezime</label>
-            <input
-              type="text"
-              id="surname"
-              value={studentSurname}
-              onChange={(e) => setStudentSurname(e.target.value)}
-            />
+                <InputLabel htmlFor="surname">Prezime</InputLabel>
+                <OutlinedInput
+                  id="surname"
+                  type="text"
+                  value={studentSurname}
+                  onChange={(e) => setStudentSurname(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/person-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={studentEmail}
-              onChange={(e) => setStudentEmail(e.target.value)}
-            />
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <OutlinedInput
+                  id="email"
+                  type="email"
+                  value={studentEmail}
+                  onChange={(e) => setStudentEmail(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/email-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="password">Lozinka</label>
-            <input
-              type="password"
-              id="password"
-              value={studentPassword}
-              onChange={(e) => setStudentPassword(e.target.value)}
-            />
+                <InputLabel htmlFor="password">Lozinka</InputLabel>
+                <OutlinedInput
+                  id="password"
+                  type="password"
+                  value={studentPassword}
+                  onChange={(e) => setStudentPassword(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/password-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="confirmPassword">Potvrdi Lozinku</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={studentConfirmPassword}
-              onChange={(e) => setStudentConfirmPassword(e.target.value)}
-            />
+                <InputLabel htmlFor="confirmPassword">
+                  Potvrdi Lozinku
+                </InputLabel>
+                <OutlinedInput
+                  id="confirmPassword"
+                  type="password"
+                  value={studentConfirmPassword}
+                  onChange={(e) => setStudentConfirmPassword(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/password-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="profilePicture">Profilna fotografija</label>
-            <input type="file" id="profilePicture" onChange={handleStudentImageChange} />
+                <InputLabel htmlFor="profilePicture">
+                  Profilna fotografija
+                </InputLabel>
+                <OutlinedInput
+                  id="profilePicture"
+                  type="file"
+                  onChange={handleStudentImageChange}
+                />
+              </div>
+              <Button
+                type="submit"
+                variant="contained"
+                style={{ marginRight: "1rem" }}
+              >
+                Register
+              </Button>
+              <Button
+                type="button"
+                variant="contained"
+                onClick={() => {
+                  setStudentName("");
+                  setStudentSurname("");
+                  setStudentEmail("");
+                  setStudentPassword("");
+                  setStudentConfirmPassword("");
+                  setStudentProfilePicture(null);
+                }}
+              >
+                Odbaci
+              </Button>
+            </form>
           </div>
-          <button type="submit">Register</button>
-          <button
-            type="button"
-            onClick={() => {
-              setStudentName("");
-              setStudentSurname("");
-              setStudentEmail("");
-              setStudentPassword("");
-              setStudentConfirmPassword("");
-              setStudentProfilePicture(null);
-            }}
-          >
-            Odbaci
-          </button>
-        </form>
-      </div>
+        </div>
       ) : (
-      <div>
-        <h1>Registracija profesora</h1>
-        <form onSubmit={handleProfessorSubmit}>
-          <div>
-            <label htmlFor="name">Ime</label>
-            <input
-              type="text"
-              id="name"
-              value={professorName}
-              onChange={(e) => setProfessorName(e.target.value)}
-            />
+        <div className="login-wrapper">
+          <div className="login-container">
+            <h1>Registracija profesora</h1>
+            <form onSubmit={handleProfessorSubmit}>
+              <div className="register-form">
+                <InputLabel htmlFor="name">Ime</InputLabel>
+                <OutlinedInput
+                  id="name"
+                  type="text"
+                  value={professorName}
+                  onChange={(e) => setProfessorName(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/person-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="surname">Prezime</label>
-            <input
-              type="text"
-              id="surname"
-              value={professorSurname}
-              onChange={(e) => setProfessorSurname(e.target.value)}
-            />
+                <InputLabel htmlFor="surname">Prezime</InputLabel>
+                <OutlinedInput
+                  id="surname"
+                  type="text"
+                  value={professorSurname}
+                  onChange={(e) => setProfessorSurname(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/person-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={professorEmail}
-              onChange={(e) => setProfessorEmail(e.target.value)}
-            />
+                <InputLabel htmlFor="email">Email</InputLabel>
+                <OutlinedInput
+                  id="email"
+                  type="email"
+                  value={professorEmail}
+                  onChange={(e) => setProfessorEmail(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/email-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="password">Lozinka</label>
-            <input
-              type="password"
-              id="password"
-              value={professorPassword}
-              onChange={(e) => setProfessorPassword(e.target.value)}
-            />
+                <InputLabel htmlFor="password">Lozinka</InputLabel>
+                <OutlinedInput
+                  id="password"
+                  type="password"
+                  value={professorPassword}
+                  onChange={(e) => setProfessorPassword(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/password-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="confirmPassword">Potvrdi Lozinku</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={professorConfirmPassword}
-              onChange={(e) => setProfessorConfirmPassword(e.target.value)}
-            />
+                <InputLabel htmlFor="confirmPassword">
+                  Potvrdi Lozinku
+                </InputLabel>
+                <OutlinedInput
+                  id="confirmPassword"
+                  type="password"
+                  value={professorConfirmPassword}
+                  onChange={(e) => setProfessorConfirmPassword(e.target.value)}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <img
+                        src="/icons/password-icon.svg"
+                        style={{ height: "15px", width: "15px" }}
+                      />
+                    </InputAdornment>
+                  }
+                />
 
-            <label htmlFor="profilePicture">Profilna fotografija</label>
-            <input type="file" id="profilePicture" onChange={handleProfessorImageChange} />
+                <InputLabel htmlFor="profilePicture">
+                  Profilna fotografija
+                </InputLabel>
+                <OutlinedInput
+                  id="profilePicture"
+                  type="file"
+                  onChange={handleProfessorImageChange}
+                />
+              </div>
+              <Button
+                type="submit"
+                variant="contained"
+                style={{ marginRight: "1rem" }}
+              >
+                Register
+              </Button>
+              <Button
+                type="button"
+                variant="contained"
+                onClick={() => {
+                  setProfessorName("");
+                  setProfessorSurname("");
+                  setProfessorEmail("");
+                  setProfessorPassword("");
+                  setProfessorConfirmPassword("");
+                  setProfessorProfilePicture(null);
+                }}
+              >
+                Odbaci
+              </Button>
+            </form>
           </div>
-          <button type="submit">Register</button>
-          <button
-            type="button"
-            onClick={() => {
-              setProfessorName("");
-              setProfessorSurname("");
-              setProfessorEmail("");
-              setProfessorPassword("");
-              setProfessorConfirmPassword("");
-              setProfessorProfilePicture(null);
-            }
-          }
-        >
-        Odbaci
-        </button>
-      </form>
-      </div>
+        </div>
       )}
+      <div className="login-wrapper">
+        <div className="login-container" style={{ flexDirection: "row" }}>
+          <Button
+            variant="contained"
+            onClick={() => setShowStudentForm(!showStudentForm)}
+          >
+            Registriraj se kao {showStudentForm ? "professor" : "student"}?
+          </Button>
+        </div>
+      </div>
     </>
-    );
-  }
+  );
+}
 
-  export default RegisterPage;
+export default RegisterPage;
