@@ -1,8 +1,24 @@
-# React + Vite
+# dotInstrukcije
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dobrodošli na programski zadatak za radionicu .GET
 
-Currently, two official plugins are available:
+Prije svega, forkajte ovaj repo te nadodajte svoje ime i prezime u nazivu projekta.
+Vrlo je moguće da ćemo još raditi na ovome, tako da molim da pratite WhatsUp grupu gdje ćemo Vas obavijestiti da syncate repo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#Instalacija
+
+za ovaj projekt potreban vam je VSC i nmp.
+Napravite 
+```
+git clone
+```
+svog forkanog repoa te napravite 
+```
+cd ime-projekta
+npm install
+npm run dev
+```
+
+Vaš kod je spreman!
+
+#Upute
