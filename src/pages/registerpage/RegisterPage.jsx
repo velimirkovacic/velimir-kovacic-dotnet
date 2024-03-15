@@ -34,6 +34,10 @@ function RegisterPage() {
   const [professorProfilePicture, setProfessorProfilePicture] = useState(null);
   const [professorSubjects, setProfessorSubjects] = useState([]);
 
+  const [newSubjectName, setNewSubjectName] = useState("");
+  const [newSubjectUrl, setNewSubjectUrl] = useState("");
+  const [newSubjectDescription, setNewSubjectDescription] = useState("");
+
   const handleStudentSubmit = async (event) => {
     event.preventDefault();
 
@@ -351,6 +355,43 @@ function RegisterPage() {
                 >
                   Stvori novi predmet
                 </Button>
+
+                <div>
+                  <InputLabel htmlFor="confirmPassword">
+                    Ime predmeta
+                  </InputLabel>
+                  <OutlinedInput
+                    type="text"
+                    value={newSubjectName}
+                    onChange={(e) => setNewSubjectName(e.target.value)}
+                  />
+                  <InputLabel htmlFor="confirmPassword">
+                    Kratica predmeta{" "}
+                  </InputLabel>
+                  <OutlinedInput
+                    id="confirmPassword"
+                    type="text"
+                    value={newSubjectUrl}
+                    onChange={(e) => setNewSubjectUrl(e.target.value)}
+                  />
+                  <InputLabel htmlFor="confirmPassword">
+                    Opis predmeta
+                  </InputLabel>
+                  <OutlinedInput
+                    id="confirmPassword"
+                    type="text"
+                    value={newSubjectDescription}
+                    onChange={(e) => setNewSubjectDescription(e.target.value)}
+                  />
+
+                  <Button
+                    type="button"
+                    variant="contained"
+                    style={{ marginRight: "1rem" }}
+                  >
+                    Spremi novi predmet
+                  </Button>
+                </div>
               </div>
 
               <Button
