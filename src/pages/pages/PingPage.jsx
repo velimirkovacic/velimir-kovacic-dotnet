@@ -1,6 +1,4 @@
-
-function ProfilePage() {
- 
+function PingPage() {
   return (
     <>
       <div className="profilepage-wrapper">
@@ -12,4 +10,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default PingPage;

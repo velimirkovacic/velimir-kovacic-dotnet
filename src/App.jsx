@@ -5,6 +5,7 @@ import LoginPage from './pages/loginpage/LoginPage.jsx'
 import RegisterPage from './pages/registerpage/RegisterPage.jsx'
 import SubjectPage from './pages/subject/SubjectPage.jsx'
 import ProfilePage from './pages/profilepage/ProfilePage.jsx'
+import PingPage from './pages/pages/PingPage.jsx';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-        </Routes>
+          <Route path="/ping" element={<PingPage />} />
+       </Routes>
       </div>
     </Router>
   );
