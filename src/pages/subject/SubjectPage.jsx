@@ -4,37 +4,6 @@ import { getSubject } from "../../api/SubjectApi";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-// let professors = [
-//   {
-//     name: "Ivan Horvat",
-//     url: "ivan-horvat",
-//     subjectTitle: "Diskretna Matematika",
-//     image: "/placeholder.png",
-//     instructionsCount: "5",
-//   },
-//   {
-//     name: "Petar Ivanić",
-//     url: "petar-ivanić",
-//     subjectTitle: "Baze podataka",
-//     image: "/placeholder.png",
-//     instructionsCount: "3",
-//   },
-//   {
-//     name: "Maja Petrić",
-//     url: "maja-petrić",
-//     subjectTitle: "Baze podataka",
-//     image: "/placeholder.png",
-//     instructionsCount: "3",
-//   },
-//   {
-//     name: "Ivona Nađ",
-//     url: "ivona-nađ",
-//     subjectTitle: "Osnove elektotehnike",
-//     image: "/placeholder.png",
-//     instructionsCount: "1",
-//   },
-// ];
-
 function SubjectPage() {
   if (!localStorage.getItem('token')) {
     window.location.href = '/login';
