@@ -5,11 +5,13 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { setDate } from "../../api/ProfessorApi";
 
 const DateTimeDialog = ({ open, onClose, professor }) => {
   const [value, setValue] = React.useState(dayjs("2024-03-15T15:30"));
 
   const handleClose = () => {
+    setDate(value, professor._id);
     onClose();
   };
 

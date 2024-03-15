@@ -16,6 +16,7 @@ function ProfilePage() {
 */
   student.sentInstructionRequests = [
     {
+      _id: "1",
       name: "Petar Ivanić",
       url: "petar-ivanić",
       subjectTitle: "Diskretna matematika 1",
@@ -23,6 +24,7 @@ function ProfilePage() {
       image: "/placeholder.png",
     },
     {
+      _id: "2",
       name: "Maja Petrić",
       url: "maja-petrić",
       subjectTitle: "Fizika 1",
@@ -30,6 +32,7 @@ function ProfilePage() {
       image: "/placeholder.png",
     },
     {
+      _id: "2",
       name: "Maja Petrić",
       url: "maja-petrić",
       subjectTitle: "Fizika 1",
@@ -89,7 +92,7 @@ function ProfilePage() {
               professors={student.sentInstructionRequests}
               showTime={true}
               showSubject={true}
-              buttonText={"Promjeni"}
+              buttonText={"Promijeni"}
               buttonVariant={"outlined"}
             />
           </div>
@@ -100,7 +103,7 @@ function ProfilePage() {
               professors={student.upcomingInstructions}
               showTime={true}
               showSubject={true}
-              buttonText={"Promjeni"}
+              buttonText={"Promijeni"}
               buttonVariant={"outlined"}
             />
           </div>

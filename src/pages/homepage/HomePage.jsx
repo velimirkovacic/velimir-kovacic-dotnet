@@ -96,34 +96,8 @@ function HomePage() {
               <h2>instrukcije po mjeri!</h2>
             </div>
 
-            {/* <div className="search-container"> */}
-              {/* <OutlinedInput
-                startAdornment={
-                  <InputAdornment position="start">
-                    <img
-                      src="/icons/search-icon.svg"
-                      style={{ height: "20px", width: "20px" }}
-                    />
-                  </InputAdornment>
-                }
-              /> */}
               <ComboBox />
-            {/* </div> */}
 
-            {/* <div>
-              {subjects.map((subject) => (
-                <Link
-                  to={`/subject/${subject.url}`}
-                  key={subject.url}
-                  className="link-no-style"
-                >
-                  <div className="predmet">
-                    <h2 className="predmet-text">{subject.title}</h2>
-                    <p className="predmet-text">{subject.description}</p>
-                  </div>
-                </Link>
-              ))}
-            </div> */}
           </div>
 
           <div>
