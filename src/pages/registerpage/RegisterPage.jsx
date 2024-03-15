@@ -9,6 +9,13 @@ import {
 import "./RegisterPage.css";
 import { handlerRegister } from "../../api/AuthApi";
 
+import { useEffect } from "react";
+
+import { getSubjects } from "../../api/SubjectApi";
+
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+
 function RegisterPage() {
   const [showStudentForm, setShowStudentForm] = useState(true);
 
@@ -25,6 +32,7 @@ function RegisterPage() {
   const [professorPassword, setProfessorPassword] = useState("");
   const [professorConfirmPassword, setProfessorConfirmPassword] = useState("");
   const [professorProfilePicture, setProfessorProfilePicture] = useState(null);
+  const [professorSubjects, setProfessorSubjects] = useState([]);
 
   const handleStudentSubmit = async (event) => {
     event.preventDefault();
@@ -54,6 +62,7 @@ function RegisterPage() {
     professorData.append("password", professorPassword);
     professorData.append("confirmPassword", professorConfirmPassword);
     professorData.append("profilePicture", professorProfilePicture);
+    professorData.append("subjects", professorSubjects);
 
     console.log(professorData);
 
@@ -66,6 +75,18 @@ function RegisterPage() {
 
   const handleProfessorImageChange = (event) => {
     setProfessorProfilePicture(event.target.files[0]);
+  };
+
+  const [subjects, setSubjects] = useState([]);
+
+  useEffect(() => {
+    getSubjects().then((response) => setSubjects(response.subjects));
+  }, []);
+
+  const handleSubjectSelect = (event, value) => {
+    if (value) {
+      setProfessorSubjects((prevSubjects) => [...prevSubjects, value]);
+    }
   };
 
   return (
@@ -287,7 +308,51 @@ function RegisterPage() {
                   type="file"
                   onChange={handleProfessorImageChange}
                 />
+
+                <InputLabel htmlFor="profilePicture">
+                  Pridruži se predmetu{" "}
+                </InputLabel>
+                <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={subjects}
+                  getOptionLabel={(option) => option.title}
+                  onChange={handleSubjectSelect}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      InputProps={{
+                        ...params.InputProps,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <img
+                              src="/icons/search-icon.svg"
+                              style={{ height: "20px", width: "20px" }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  )}
+                />
+                {professorSubjects.map((subject) => (
+                  <div key={subject.url} className="link-no-style">
+                    <div className="predmet">
+                      <h2 className="predmet-text">{subject.title}</h2>
+                      <p className="predmet-text">{subject.description}</p>
+                    </div>
+                  </div>
+                ))}
+
+                <Button
+                  type="button"
+                  variant="contained"
+                  style={{ marginRight: "1rem" }}
+                >
+                  Stvori novi predmet
+                </Button>
               </div>
+
               <Button
                 type="submit"
                 variant="contained"
