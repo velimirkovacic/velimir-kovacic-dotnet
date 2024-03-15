@@ -93,6 +93,10 @@ function RegisterPage() {
     }
   };
 
+  const handleSubjectSubmit = async () => {
+  };
+
+
   return (
     <>
       {showStudentForm ? (
@@ -197,7 +201,7 @@ function RegisterPage() {
                 variant="contained"
                 style={{ marginRight: "1rem" }}
               >
-                Register
+                Registriraj se
               </Button>
               <Button
                 type="button"
@@ -388,6 +392,7 @@ function RegisterPage() {
                     type="button"
                     variant="contained"
                     style={{ marginRight: "1rem" }}
+                    onClick={handleSubjectSubmit}
                   >
                     Spremi novi predmet
                   </Button>
@@ -399,7 +404,7 @@ function RegisterPage() {
                 variant="contained"
                 style={{ marginRight: "1rem" }}
               >
-                Register
+                Registriraj se
               </Button>
               <Button
                 type="button"

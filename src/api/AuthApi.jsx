@@ -20,13 +20,12 @@ export const handleLogin = async (data, user) => {
 
       // Clear previous token and user data
       localStorage.removeItem("token");
-      localStorage.removeItem("student");
-      localStorage.removeItem("professor");
+      localStorage.removeItem("user");
 
       // Save the token to the local storage
       localStorage.setItem("token", result.token);
       localStorage.setItem(
-        user,
+        "user",
         JSON.stringify(user === "student" ? result.student : result.professor)
       );
       window.location.href = "/";
@@ -59,7 +58,6 @@ export const handlerRegister = async (formData, user) => {
 
 export const logout = () => {
   localStorage.removeItem("token");
-  localStorage.removeItem("student");
-  localStorage.removeItem("professor");
+  localStorage.removeItem("user");
   window.location.href = "/";
 };

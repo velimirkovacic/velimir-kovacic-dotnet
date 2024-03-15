@@ -23,7 +23,7 @@ function HomePage() {
               <>
               <Link to="/"><Button variant="contained">Pretraži</Button></Link>
               <Link to="/profile"><Button variant="contained">Moje instrukcije</Button></Link>
-              <Link to="/postavke"><Button variant="contained">Postavke</Button></Link>
+              <Link to="/settings"><Button variant="contained">Postavke</Button></Link>
               <Button variant="contained" onClick={logout}>Odjavi se</Button>
               </>
             ) : (

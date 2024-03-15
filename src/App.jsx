@@ -6,6 +6,7 @@ import RegisterPage from './pages/registerpage/RegisterPage.jsx'
 import SubjectPage from './pages/subject/SubjectPage.jsx'
 import ProfilePage from './pages/profilepage/ProfilePage.jsx'
 import PingPage from './pages/pages/PingPage.jsx';
+import Settings from './pages/settings/SettingsPage.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/ping" element={<PingPage />} />
+          <Route path="/settings" element={<Settings />} />
        </Routes>
       </div>
     </Router>

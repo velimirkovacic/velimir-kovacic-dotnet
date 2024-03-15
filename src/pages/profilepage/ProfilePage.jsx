@@ -5,7 +5,7 @@ function ProfilePage() {
   if (!localStorage.getItem("token")) {
     window.location.href = '/login';
   }
-  let student = JSON.parse(localStorage.getItem('student'));
+  let user = JSON.parse(localStorage.getItem('user'));
 
   /*for dev purposes, remove later 
   let student = {};
@@ -14,7 +14,7 @@ function ProfilePage() {
   student.description =
     "Lorem ipsum dolor sit amet consectetur. Eu fermentum posuere porttitor dui erat amet.";
 */
-  student.sentInstructionRequests = [
+  user.sentInstructionRequests = [
     {
       _id: "1",
       name: "Petar Ivanić",
@@ -41,7 +41,7 @@ function ProfilePage() {
     },
   ];
 
-  student.upcomingInstructions = [
+  user.upcomingInstructions = [
     {
       name: "Petar Ivanić",
       url: "petar-ivanić",
@@ -58,7 +58,7 @@ function ProfilePage() {
     },
   ];
 
-  student.pageInstructions = [
+  user.pageInstructions = [
     {
       name: "Petar Ivanić",
       url: "petar-ivanić",
@@ -79,17 +79,17 @@ function ProfilePage() {
       <div className="profilepage-wrapper">
         <div className="profilepage-container">
           <div className="student-info">
-            <img src={student.image} className="student-image" />
+            <img src={user.image} className="student-image" />
             <div>
-              <h1>{student.name} {student.surname}</h1>
-              <p>{student.description}</p>
+              <h1>{user.name} {user.surname}</h1>
+              <p>{user.description}</p>
             </div>
           </div>
 
           <div>
             <h4>Poslani zahtjevi za instrukcije:</h4>
             <ProfessorsComponent
-              professors={student.sentInstructionRequests}
+              professors={user.sentInstructionRequests}
               showTime={true}
               showSubject={true}
               buttonText={"Promijeni"}
@@ -100,7 +100,7 @@ function ProfilePage() {
           <div>
             <h4>Nadolazeće instrukcije:</h4>
             <ProfessorsComponent
-              professors={student.upcomingInstructions}
+              professors={user.upcomingInstructions}
               showTime={true}
               showSubject={true}
               buttonText={"Promijeni"}
@@ -111,7 +111,7 @@ function ProfilePage() {
           <div>
             <h4>Povijest instrukcija:</h4>
             <ProfessorsComponent
-              professors={student.pageInstructions}
+              professors={user.pageInstructions}
               showTime={true}
               showSubject={true}
               buttonText={"Ponovno dogovori"}
