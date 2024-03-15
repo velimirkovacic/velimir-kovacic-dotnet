@@ -9,7 +9,7 @@ function Protected() {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(backend_url + '/protected', {
+                const response = await fetch(import.meta.env.VITE_REACT_BACKEND_URL + '/protected', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
