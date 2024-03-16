@@ -227,6 +227,7 @@ Lista apija je naš dobronamjerni savjet kako oblikovati APi strukturu. Slobodno
 # Restrikcije i napomene
   - rute koje vraćaju student objekt također vraćaju objekte sentInstructionRequests, upcomingInstructions, pastInstructions, koji sadrže Jsona profesor objekata koji se uklapaju u svaku varijablu (pogledati ProfilePage.jsx komponentu)
   - pri registraciji morate provjeravati postoje li ti emailovi u bazi
+  - pri kreiranju predmeta morate provjeriti postoji li taj url u bazi
   - profesor može biti instruktor na maksimalno 3 predmeta
   - student istovremeno može poslati maksimalno 3 zahtjeva za instrukcije
   - front se brine za to hoće li informacije biti pokazane za studenta ili profesora, jedino profesori mogu kreirati nove predmete
