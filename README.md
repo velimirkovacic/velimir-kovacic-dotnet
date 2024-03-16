@@ -38,24 +38,24 @@ Aplikacija je apk za instrukcije koja spaja studente i profesore te im nudi opci
 ## Student
   - id: id
   - email: String
-  -name: String
-  -surname: String
-  -password: String 
-  -profilePictureUrl: String
+  - name: String
+  - surname: String
+  - password: String 
+  - profilePictureUrl: String
 
 ## Professor
-  -email: String
-  -name: String
-  -surname: String
-  -password: String 
-  -profilePictureUrl: String
-  -subjects: String[] // lista urlova/id-eva predmeta na kojima profesor predaje
+  - email: String
+  - name: String
+  - surname: String
+  - password: String 
+  - profilePictureUrl: String
+  - subjects: String[] // lista urlova/id-eva predmeta na kojima profesor predaje
 
 ## Subject
-  -id: id
-  -title: String
-  -url: String
-  -description: String
+  - id: id
+  - title: String
+  - url: String
+  - description: String
 
 ## Instructions Date
   -studentId: id
