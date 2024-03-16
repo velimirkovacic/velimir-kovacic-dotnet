@@ -36,8 +36,8 @@ Aplikacija je apk za instrukcije koja spaja studente i profesore te im nudi opci
 # Entiteti
 
 ## Student
-  -id: id
-  -email: String
+  - id: id
+  - email: String
   -name: String
   -surname: String
   -password: String 
