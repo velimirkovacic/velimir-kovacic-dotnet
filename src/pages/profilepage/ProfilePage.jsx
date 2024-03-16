@@ -1,11 +1,28 @@
 import ProfessorsComponent from "../../components/professors/ProfessorsComponent";
+import { getInstructions } from "../../api/ProfessorApi";
 import "./ProfilePage.css";
+import React, {useEffect, useState} from 'react';
 
 function ProfilePage() {
   if (!localStorage.getItem("token")) {
     window.location.href = '/login';
   }
   let user = JSON.parse(localStorage.getItem('user'));
+
+  const [pastInstructions, setPastInstructions] = useState([]);
+  const [upcomingInstructions, setUpcomingInstructions] = useState([]);
+  const [sentInstructionRequests, setSentInstructionRequests] = useState([]);
+
+  useEffect(() => {
+    const fetchInstructions = async () => {
+      const fetchedInstructions = await getInstructions();
+      setPastInstructions(fetchedInstructions.pastInstructions);
+      setUpcomingInstructions(fetchedInstructions.upcomingInstructions);
+      setSentInstructionRequests(fetchedInstructions.sentInstructionRequests);
+    };
+
+    fetchInstructions();
+  }, []);
 
   return (
     <>
@@ -22,7 +39,7 @@ function ProfilePage() {
           <div>
             <h4>Poslani zahtjevi za instrukcije:</h4>
             <ProfessorsComponent
-              professors={user.sentInstructionRequests}
+              professors={sentInstructionRequests}
               showTime={true}
               showSubject={true}
               buttonText={"Promijeni"}
@@ -33,7 +50,7 @@ function ProfilePage() {
           <div>
             <h4>Nadolazeće instrukcije:</h4>
             <ProfessorsComponent
-              professors={user.upcomingInstructions}
+              professors={upcomingInstructions}
               showTime={true}
               showSubject={true}
               buttonText={"Promijeni"}
@@ -44,7 +61,7 @@ function ProfilePage() {
           <div>
             <h4>Povijest instrukcija:</h4>
             <ProfessorsComponent
-              professors={user.pastInstructions}
+              professors={pastInstructions}
               showTime={true}
               showSubject={true}
               buttonText={"Ponovno dogovori"}
