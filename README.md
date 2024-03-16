@@ -35,4 +35,33 @@ Aplikacija je apk za instrukcije koja spaja studente i profesore te im nudi opci
 
 # Entiteti
 
+## Student
+  -id: id
+  -email: String
+  -name: String
+  -surname: String
+  -password: String 
+  -profilePictureUrl: String
+
+## Professor
+  -email: String
+  -name: String
+  -surname: String
+  -password: String 
+  -profilePictureUrl: String
+  -subjects: String[] // lista urlova/id-eva predmeta na kojima profesor predaje
+
+## Subject
+  -id: id
+  -title: String
+  -url: String
+  -description: String
+
+## Instructions Date
+  -studentId: id
+  -professorId: id
+  -dateTime: DateTime
+  -status: String //status može biti poslan zahtjev, nadolazeća instrukcija ili prošla instukcija
+
+
 
