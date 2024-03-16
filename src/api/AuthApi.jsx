@@ -24,6 +24,12 @@ export const handleLogin = async (data, user) => {
 
       // Save the token to the local storage
       localStorage.setItem("token", result.token);
+      if (user === "student") {
+        result.student.status = "student";
+      } else {
+        result.professor.status = "professor";
+      }
+
       localStorage.setItem(
         "user",
         JSON.stringify(user === "student" ? result.student : result.professor)

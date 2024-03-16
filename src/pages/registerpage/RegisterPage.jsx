@@ -62,7 +62,7 @@ function RegisterPage() {
     professorData.append("password", professorPassword);
     professorData.append("confirmPassword", professorConfirmPassword);
     professorData.append("profilePicture", professorProfilePicture);
-    professorData.append("subjects", professorSubjects);
+    professorData.append("subjects", professorSubjects.map((s) => s.url));
 
     console.log(professorData);
 

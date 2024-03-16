@@ -1,5 +1,9 @@
-function SubjectPage() {
-    <></>
+function SettingsPage() {
+  return (
+    <>
+      <h1>Todo: settings page</h1>
+    </>
+  );
 }
 
-export default SubjectPage;
+export default SettingsPage;
