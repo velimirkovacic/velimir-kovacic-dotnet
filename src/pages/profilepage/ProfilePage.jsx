@@ -44,7 +44,7 @@ function ProfilePage() {
           <div>
             <h4>Povijest instrukcija:</h4>
             <ProfessorsComponent
-              professors={user.pageInstructions}
+              professors={user.pastInstructions}
               showTime={true}
               showSubject={true}
               buttonText={"Ponovno dogovori"}
