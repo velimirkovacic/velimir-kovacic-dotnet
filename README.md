@@ -68,6 +68,8 @@ Lista entiteta je naš dobronamjerni savjet kako oblikovati bazu. Slobodno sami 
 
 # API Documentation
 
+Lista apija je naš dobronamjerni savjet kako oblikovati APi strukturu. Slobodno sami možete mijenjati stvari. Molimo da pritom pripazite na imenovanje ruta jer se neke varijable koriste i na frontendu.
+
 ## Student Routes
 
 ### Register a Student
@@ -206,14 +208,13 @@ Lista entiteta je naš dobronamjerni savjet kako oblikovati bazu. Slobodno sami 
 - **URL**: /subjects
 - **Method**: GET
 - **Description**: Retrieves a list of all subjects.
-- **Authentication**: Bearer Token (JWT)
 - **Returns**:
   - **success**: true/false
   - **subjects**: array of subject objects (if success is true)
 
 ### Schedule Instruction Session
 
-- **URL**: `/instructions`
+- **URL**: /instructions
 - **Method**: POST
 - **Authentication**: Bearer Token (JWT)
 - **Request Body**:
@@ -223,6 +224,14 @@ Lista entiteta je naš dobronamjerni savjet kako oblikovati bazu. Slobodno sami 
   - **success**: true/false
   - **message**: string
 
+# Restrikcije i napomene
+  - rute koje vraćaju student objekt također vraćaju objekte sentInstructionRequests, upcomingInstructions, pastInstructions, koji sadrže Jsona profesor objekata koji se uklapaju u svaku varijablu (pogledati ProfilePage.jsx komponentu)
+  - pri registraciji morate provjeravati postoje li ti emailovi u bazi
+  - profesor može biti instruktor na maksimalno 3 predmeta
+  - student istovremeno može poslati maksimalno 3 zahtjeva za instrukcije
+  - front se brine za to hoće li informacije biti pokazane za studenta ili profesora, jedino profesori mogu kreirati nove predmete
+  - morate ostvariti JWT autorizaciju
 
+Sretno! :)
 
 
