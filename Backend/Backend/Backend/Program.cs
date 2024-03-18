@@ -15,6 +15,9 @@ builder.Services.Configure<GetDBSettings>(
 
 builder.Services.AddSingleton<StudentService>();
 builder.Services.AddSingleton<ProfessorService>();
+builder.Services.AddSingleton<InstructionService>();
+builder.Services.AddSingleton<SubjectService>();
+
 
 //Jwt configuration starts here
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();

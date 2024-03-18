@@ -30,10 +30,10 @@ namespace Backend.Controllers
         }
 
         [Authorize]
-        [HttpGet("email")]
-        public async Task<ActionResult<Student>> Get(EmailRequestModel email)
+        [HttpGet("{email}")]
+        public async Task<ActionResult<Student>> Get(string email)
         {
-         var student = await _studentService.GetAsync(email.Email);
+         var student = await _studentService.GetAsync(email);
 
             if (student is null)
             {

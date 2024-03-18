@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
     <PackageReference Include="MongoDB.Driver" Version="2.24.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.1" />
+    <PackageReference Include="System.Linq.Dynamic" Version="1.0.8" />
   </ItemGroup>
 
 </Project>

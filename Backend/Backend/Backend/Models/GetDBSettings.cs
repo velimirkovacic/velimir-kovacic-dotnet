@@ -7,5 +7,9 @@
 
         public string StudentCollectionName { get; set; } = null!;
         public string ProfessorCollectionName { get; set; } = null!;
+        public string InstructionCollectionName { get; set; } = null!;
+        public string SubjectCollectionName { get; set; } = null!;
+
+
     }
 }
