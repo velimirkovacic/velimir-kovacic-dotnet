@@ -27,8 +27,9 @@ namespace Backend.Controllers
 
             if (ModelState.IsValid)
             {
+                var professor = _professorService.GetAsync(newStudent.Email).Result;
                 var student = _studentService.GetAsync(newStudent.Email).Result;
-                if (student == null)
+                if (professor == null && student == null)
                 {
                     await _studentService.CreateAsync(newStudent);
 
@@ -49,7 +50,8 @@ namespace Backend.Controllers
             if (ModelState.IsValid)
             {
                 var professor = _professorService.GetAsync(newProfessor.Email).Result;
-                if (professor == null)
+                var student = _studentService.GetAsync(newProfessor.Email).Result;
+                if (professor == null && student == null)
                 {
                     await _professorService.CreateAsync(newProfessor);
 

@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using Backend.Models;
 using System;
+using static MongoDB.Driver.WriteConcern;
 
 namespace Backend.Services;
 
@@ -47,5 +48,12 @@ public class InstructionService
     {
         DateTime dt = DateTime.UtcNow;
         return await _InstructionCollection.Find(x =>  x.studentId == id && x.dateTime > dt).ToListAsync();
+    }
+
+    public async Task UpdateAsyncStatuses()
+    {
+        DateTime dt = DateTime.UtcNow;
+        var update = Builders<Instruction>.Update.Set(ins => ins.status, "proslo");
+        _InstructionCollection.UpdateMany(x => x.dateTime < dt, update);
     }
 }

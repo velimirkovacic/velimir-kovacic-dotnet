@@ -22,7 +22,8 @@ export async function getProfessors() {
 
 export async function sentInstructionDate(selectedDate, professorId) {
   try {
-      const response = await fetch(
+
+    const response = await fetch(
           import.meta.env.VITE_REACT_BACKEND_URL + "/instructions",
           {
               method: "POST",
@@ -31,7 +32,7 @@ export async function sentInstructionDate(selectedDate, professorId) {
                   Authorization: "Bearer " + localStorage.getItem("token"),
               },
               body: JSON.stringify({
-                  date: selectedDate,
+                  dateTime: selectedDate,
                   professorId: professorId
               })
           }

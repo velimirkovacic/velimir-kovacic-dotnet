@@ -41,7 +41,7 @@ namespace Backend.Controllers
                     await _subjectService.CountAsyncTitle(newSubject.Title) == 0)
                 {
                     await _subjectService.CreateAsync(newSubject);
-                    professor.Subjects = professor.Subjects.Append(newSubject.Title).ToList();
+                    professor.Subjects = professor.Subjects.Append(newSubject.Id).ToList();
                     await _professorService.UpdateAsync(Id, professor);
                     var response = new { success = true, message = "Creation Successful" };
                     
@@ -80,8 +80,11 @@ namespace Backend.Controllers
                 return BadRequest(response);
             }
 
+            var targetSubject = Subject[0];
+            var professors = await _professorService.GetAsyncBySubject(targetSubject.Url);
 
-            var response2 = new { success = true, subject = Subject, message = "Query successful" };
+
+            var response2 = new { success = true, subject = targetSubject, professors = professors, message = "Query successful" };
             return Ok(response2);
         }
 

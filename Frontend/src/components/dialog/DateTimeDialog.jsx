@@ -25,7 +25,7 @@ const DateTimeDialog = ({ open, onClose, professor }) => {
           <DateTimePicker
             label="Controlled picker"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={(newValue) => setValue(dayjs(newValue))}
           />
         </LocalizationProvider>
         </div>

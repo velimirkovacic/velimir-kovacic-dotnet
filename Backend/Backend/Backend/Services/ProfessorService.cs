@@ -31,6 +31,9 @@ public class ProfessorService
     public async Task<Professor?> GetAsyncId(string Id) =>
     await _ProfessorCollection.Find(x => x.Id == Id).FirstOrDefaultAsync();
 
+    public async Task<List<Professor>> GetAsyncBySubject(string Id) =>
+         _ProfessorCollection.Find(x => x.Subjects.Contains(Id)).ToList();
+
     public async Task CreateAsync(Professor newProfessor) =>
         await _ProfessorCollection.InsertOneAsync(newProfessor);
 
