@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class ProfessorController : ControllerBase
     {
@@ -17,9 +17,9 @@ namespace Backend.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("professors")]
         [Authorize]
-        public async Task<ActionResult<Professor>> Get()
+        public async Task<IActionResult> Get()
         {
             var Professors = await _ProfessorService.GetAsync();
 
@@ -29,10 +29,10 @@ namespace Backend.Controllers
         }
 
         [Authorize]
-        [HttpGet("email")]
-        public async Task<ActionResult<Professor>> Get(EmailRequestModel email)
+        [HttpGet("[controller]/{email}")]
+        public async Task<IActionResult> Get(string email)
         {
-            var Professor = await _ProfessorService.GetAsync(email.Email);
+            var Professor = await _ProfessorService.GetAsync(email);
 
             if (Professor is null)
             {
@@ -44,6 +44,5 @@ namespace Backend.Controllers
             var response2 = new { success = true, professor = Professor, message = "Query successful" };
             return Ok(response2);
         }
-
     }
 }

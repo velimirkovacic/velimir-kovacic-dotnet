@@ -24,14 +24,14 @@ function RegisterPage() {
   const [studentEmail, setStudentEmail] = useState("");
   const [studentPassword, setStudentPassword] = useState("");
   const [studentConfirmPassword, setStudentConfirmPassword] = useState("");
-  const [studentProfilePicture, setStudentProfilePicture] = useState(null);
+  const [studentProfilePicture, setStudentProfilePicture] = useState("");
 
   const [professorName, setProfessorName] = useState("");
   const [professorSurname, setProfessorSurname] = useState("");
   const [professorEmail, setProfessorEmail] = useState("");
   const [professorPassword, setProfessorPassword] = useState("");
   const [professorConfirmPassword, setProfessorConfirmPassword] = useState("");
-  const [professorProfilePicture, setProfessorProfilePicture] = useState(null);
+  const [professorProfilePicture, setProfessorProfilePicture] = useState("");
   const [professorSubjects, setProfessorSubjects] = useState([]);
 
   const handleStudentSubmit = async (event) => {
@@ -70,7 +70,7 @@ function RegisterPage() {
   };
 
   const handleStudentImageChange = (event) => {
-    setStudentProfilePicture(event.target.files[0]);
+    setStudentProfilePicture(event.target.profilePicture.files[0]);
   };
 
   const handleProfessorImageChange = (event) => {
@@ -185,8 +185,8 @@ function RegisterPage() {
                 </InputLabel>
                 <OutlinedInput
                   id="profilePicture"
-                  type="file"
-                  onChange={handleStudentImageChange}
+                  type="text"
+                  onChange={(e) => setStudentProfilePicture(e.target.value)}
                 />
               </div>
               <Button
@@ -205,7 +205,7 @@ function RegisterPage() {
                   setStudentEmail("");
                   setStudentPassword("");
                   setStudentConfirmPassword("");
-                  setStudentProfilePicture(null);
+                  setStudentProfilePicture("");
                 }}
               >
                 Odbaci
@@ -306,8 +306,8 @@ function RegisterPage() {
                 </InputLabel>
                 <OutlinedInput
                   id="profilePicture"
-                  type="file"
-                  onChange={handleProfessorImageChange}
+                  type="text"
+                  onChange={(e) => setProfessorProfilePicture(e.target.value)}
                 />
 
                 <InputLabel htmlFor="profilePicture">

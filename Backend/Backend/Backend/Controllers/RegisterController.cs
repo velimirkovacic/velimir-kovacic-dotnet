@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Backend.Models;
 using Backend.Services;
 using Microsoft.AspNetCore.Http;
@@ -21,30 +22,40 @@ namespace Backend.Controllers
 
 
         [HttpPost("student")]
-        public async Task<IActionResult> Post(Student newStudent)
+        public async Task<IActionResult> Post([FromForm] Student newStudent)
         {
 
             if (ModelState.IsValid)
             {
-                await _studentService.CreateAsync(newStudent);
+                var student = _studentService.GetAsync(newStudent.Email).Result;
+                if (student == null)
+                {
+                    await _studentService.CreateAsync(newStudent);
 
-                var response = new { success = true, message = "Registration Successful" };
-                return Ok(response);
+                    var response = new { success = true, message = "Registration Successful" };
+                    return Created(string.Empty, response);
+                }
+                
+                
             }
             var response2 = new { success = false, message = "Registration Failed" };
             return BadRequest(response2);
         }
 
         [HttpPost("professor")]
-        public async Task<IActionResult> Post(Professor professor)
+        public async Task<IActionResult> Post([FromForm] Professor newProfessor)
         {
 
             if (ModelState.IsValid)
             {
-                await _professorService.CreateAsync(professor);
+                var professor = _professorService.GetAsync(newProfessor.Email).Result;
+                if (professor == null)
+                {
+                    await _professorService.CreateAsync(newProfessor);
 
-                var response = new { success = true, message = "Registration Successful" };
-                return Ok(response);
+                    var response = new { success = true, message = "Registration Successful" };
+                    return Created(string.Empty, response);
+                }
             }
             var response2 = new { success = false, message = "Registration Failed" };
             return BadRequest(response2);

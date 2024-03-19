@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -18,9 +18,9 @@ namespace Backend.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("students")]
         [Authorize]
-        public async Task<ActionResult<Student>> Get()
+        public async Task<IActionResult> Get()
         {
             var students = await _studentService.GetAsync();
 
@@ -30,8 +30,8 @@ namespace Backend.Controllers
         }
 
         [Authorize]
-        [HttpGet("{email}")]
-        public async Task<ActionResult<Student>> Get(string email)
+        [HttpGet("[controller]/{email}")]
+        public async Task<IActionResult> Get(string email)
         {
          var student = await _studentService.GetAsync(email);
 

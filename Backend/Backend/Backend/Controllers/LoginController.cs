@@ -117,6 +117,7 @@ namespace Backend.Controllers
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
+                new Claim(ClaimTypes.NameIdentifier,professor.Id),
                 new Claim(ClaimTypes.Email, professor.Email)
             };
             var token = new JwtSecurityToken(

@@ -28,6 +28,8 @@ public class ProfessorService
         await _ProfessorCollection.Find(x => x.Email == email  && x.Password == password).FirstOrDefaultAsync();
     public async Task<Professor?> GetAsync(string email) =>
         await _ProfessorCollection.Find(x => x.Email == email).FirstOrDefaultAsync();
+    public async Task<Professor?> GetAsyncId(string Id) =>
+    await _ProfessorCollection.Find(x => x.Id == Id).FirstOrDefaultAsync();
 
     public async Task CreateAsync(Professor newProfessor) =>
         await _ProfessorCollection.InsertOneAsync(newProfessor);

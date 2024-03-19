@@ -28,7 +28,8 @@ public class StudentService
         await _StudentCollection.Find(x => x.Email == email  && x.Password == password).FirstOrDefaultAsync();
     public async Task<Student?> GetAsync(string email) =>
         await _StudentCollection.Find(x => x.Email == email).FirstOrDefaultAsync();
-
+    public async Task<Student?> GetAsyncId(string Id) =>
+    await _StudentCollection.Find(x => x.Id == Id).FirstOrDefaultAsync();
     public async Task CreateAsync(Student newStudent) =>
         await _StudentCollection.InsertOneAsync(newStudent);
 

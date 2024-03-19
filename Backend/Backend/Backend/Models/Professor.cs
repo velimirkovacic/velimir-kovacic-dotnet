@@ -10,7 +10,7 @@ namespace Backend.Models
 
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         [Required]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
 
@@ -23,7 +23,7 @@ namespace Backend.Models
         public string Password { get; set; }
         public string? ProfilePictureUrl { get; set; }
         public int? InstructionsCount { get; set; }
-        public string[]? Subjects { get; set; }  
+        public List<string>? Subjects { get; set; }  
 
     }
 }
